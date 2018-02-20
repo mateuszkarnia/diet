@@ -16,6 +16,8 @@ def main():
     list_of_excersises = []
     list_of_calories_burning = []
 
+
+def menu():
     while choice != "8":
         print("[1] - Add food and callories what you eat.")
         print("[2] - Add excersise and callories burning.")
