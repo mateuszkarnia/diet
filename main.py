@@ -5,13 +5,14 @@ import data_menager
 import common
 
 def main():
+    
     choice = ""
     choice_1 = ""
     marked = "X"
     unmarked = " "
 
-    things_to_do = []
-    things_marked = []
+    list_of_food = []
+    list_of_food_calories = []
     list_of_excersises = []
     list_of_calories_burning = []
 
@@ -26,11 +27,11 @@ def main():
         print("[8] - Exit")
         choice = input("Type your choose: ")
         if choice == "1":
-            data_menager.add_food()
+            data_menager.add_food(list_of_food, list_of_food_calories)
         if choice == "2":
             data_menager.add_excersise(list_of_excersises, list_of_calories_burning)
         if choice == "3":
-            data_menager.show_list_of_food()
+            data_menager.show_list_of_food(list_of_food, list_of_food_calories)
         if choice == "4":
             data_menager.show_list_of_excersises(list_of_excersises, list_of_calories_burning)
         if choice == "5":
