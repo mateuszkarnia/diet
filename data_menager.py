@@ -10,13 +10,20 @@ things_to_do = []
 things_marked = []
 
 
-def add_food(list_of_food, list_of_food_calories):
-    name_of_food = input("[1] - Back\n Enter the name of the food: \n")
+def add_food(filename='things.txt'):
+    cls()
+    list_of_food = []
+
+    name_of_food = input("[1] - Back\nEnter the name of the food: ")
     food_calorie = input("Enter the amount of calories: ")
-    if name_of_food != "1":
-        list_of_food.append(name_of_food)
-        list_of_food_calories.append(food_calorie)
-        return(list_of_food, list_of_food_calories)
+    
+    list_of_food.append([name_of_food, food_calorie])
+    file_to_open = open(filename, 'a')
+
+    line = " ".join(list_of_food[0])
+
+    file_to_open.write(line)
+
 
 def import_file(filename='things.txt'):
     file_to_open = open(filename)
