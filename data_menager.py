@@ -8,6 +8,8 @@ unmarked = " "
 
 things_to_do = []
 things_marked = []
+list_of_excersises = []
+list_of_calories_burning = []
 
 def add():
     cls()
@@ -19,11 +21,17 @@ def add():
     if choice_1 == "1":
         return
 
-def show_list():
+def show_list_of_food():
     cls()
     print("Your list of things to do:")
     for k in range(0, len(things_to_do), 1):
         print(str(k+1) + ".) " + things_to_do[k] + " [" + things_marked[k] + "]")
+
+def show_list_of_excersises():
+    cls()
+    print("Your list of things to do:")
+    for k in range(0, len(list_of_excersises), 1):
+        print(str(k+1) + ".) " + list_of_excersises[k] + " [" + list_of_calories_burning[k] + "]")
 
 def mark_as_done():
     cls()
