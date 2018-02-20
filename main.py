@@ -25,6 +25,7 @@ def main():
         print("[6] - Delete thing to do.")
         print("[7] - Archive")
         print("[8] - Exit")
+        print("[9] - calculate calories")
         choice = input("Type your choose: ")
         if choice == "1":
             data_menager.add_food(list_of_food, list_of_food_calories)
@@ -42,4 +43,11 @@ def main():
             data_menager.archive()
         if choice == "8":
             data_menager.save()
+        if choice == "9":
+            x = data_menager.import_file(filename='things.txt')
+            value = data_menager.calculate(x)
+            data_menager.check(value)
+        
+
 main()
+
