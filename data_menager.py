@@ -11,29 +11,27 @@ things_marked = []
 
 
 def add_food(list_of_food, list_of_food_calories):
-    cls()
-    name_of_food = input("[1] - Back\nEnter the name of the food: ")
+    name_of_food = input("[1] - Back\n Enter the name of the food: \n")
     food_calorie = input("Enter the amount of calories: ")
     if name_of_food != "1":
         list_of_food.append(name_of_food)
         list_of_food_calories.append(food_calorie)
-
         return(list_of_food, list_of_food_calories)
 
+
 def show_list_of_food(list_of_food, list_of_food_calories):
-    cls()
     print("Your list of food:")
     for k in range(0, len(list_of_food), 1):
-        print(str(k+1) + ".) " + list_of_food[k] + " [" + list_of_food_calories[k] + "]")
+        print(str(k+1) + ".) " + list_of_food[k], list_of_food_calories[k], "kcl")
+
 
 def show_list_of_excersises(list_of_excersises, list_of_calories_burning):
-    cls()
     print("Your list of excersises:")
     for k in range(0, len(list_of_excersises), 1):
-        print(str(k+1), ".) ", list_of_excersises[k], list_of_calories_burning[k], "kcl")
+        print(str(k+1) + ".) " + list_of_excersises[k], list_of_calories_burning[k], "kcl")
+
 
 def add_excersise(list_of_excersises, list_of_calories_burning):
-    cls()
     name_of_excersise = input("[1] - Back\nEnter the name of the excersise: ")
     calories_burning = input("Enter the amount of calories burning: ")
 
@@ -43,8 +41,8 @@ def add_excersise(list_of_excersises, list_of_calories_burning):
         return(list_of_excersises, list_of_calories_burning)
 
 
+
 def mark_as_done():
-    cls()
     show_list()
     mark_choise = input("Choose number 0f thing which you want to mark/unmark as done: ")
     if things_marked[int(mark_choise) - 1] != "X":
@@ -55,7 +53,6 @@ def mark_as_done():
 
 
 def delete_thing():
-    cls()
     show_list()
     delete_choice = input("[x] - Back\nWhich task do you want to delete?")
     if delete_choice != "x":
