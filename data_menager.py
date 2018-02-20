@@ -20,6 +20,27 @@ def add_food(list_of_food, list_of_food_calories):
 
         return(list_of_food, list_of_food_calories)
 
+def import_file(filename='things.txt'):
+    file_to_open = open(filename)
+    list_from_file = file_to_open.readlines()
+    for i in range(len(list_from_file)):
+        list_from_file[i] = list_from_file[i].replace("/n","").split(" ")
+    
+    return list_from_file
+
+def check(calories):
+    if calories < 2000:
+        print(str(calories) + " good")
+    else:
+        print("bad")
+
+def calculate(list_a):
+    count = 0
+    for i in range(len(list_a)):
+        count += int(list_a[i][1])
+    
+    return count
+
 def show_list_of_food(list_of_food, list_of_food_calories):
     cls()
     print("Your list of food:")
