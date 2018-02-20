@@ -8,13 +8,11 @@ unmarked = " "
 
 things_to_do = []
 things_marked = []
-list_of_excersises = []
-list_of_calories_burning = []
+
 
 def add():
     cls()
-    choice_1 = input("[1] - Back\nenter the name of the food and the amount of calories "
-)
+    choice_1 = input("[1] - Back\nenter the name of the food and the amount of calories ")
     if choice_1 != "1":
         things_to_do.append(choice_1)
         things_marked.append(unmarked)
@@ -27,11 +25,22 @@ def show_list_of_food():
     for k in range(0, len(things_to_do), 1):
         print(str(k+1) + ".) " + things_to_do[k] + " [" + things_marked[k] + "]")
 
-def show_list_of_excersises():
+def show_list_of_excersises(list_of_excersises, list_of_calories_burning):
     cls()
-    print("Your list of things to do:")
+    print("Your list of excersises:")
     for k in range(0, len(list_of_excersises), 1):
-        print(str(k+1) + ".) " + list_of_excersises[k] + " [" + list_of_calories_burning[k] + "]")
+        print(str(k+1), ".) ", list_of_excersises[k], list_of_calories_burning[k], "kcl")
+
+def add_excersise(list_of_excersises, list_of_calories_burning):
+    cls()
+    name_of_excersise = input("[1] - Back\nEnter the name of the excersise: ")
+    calories_burning = input("Enter the amount of calories burning: ")
+
+    if name_of_excersise != "1":
+        list_of_excersises.append(name_of_excersise)
+        list_of_calories_burning.append(calories_burning)
+        return(list_of_excersises, list_of_calories_burning)
+
 
 def mark_as_done():
     cls()
