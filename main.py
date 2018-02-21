@@ -14,7 +14,7 @@ def main():
     dict_of_excersises = {}
 
     while choice != "8":
-        print("[1] - Add food and callories what you eat.")
+        print("\n[1] - Add food and callories what you eat.")
         print("[2] - Add excersise and callories burning.")
         print("[3] - Show list of food.")
         print("[4] - Show list of excersises.")
@@ -32,10 +32,10 @@ def main():
             data_menager.add_excersise(dict_of_excersises)
         if choice == "3":
             os.system('clear')
-            data_menager.show_list_of_food(filename='things.txt')
+            data_menager.show_list_of_food(filename='food.txt')
         if choice == "4":
             os.system('clear')
-            data_menager.show_list_of_excersises(list_of_excersises, list_of_calories_burning)
+            data_menager.show_list_of_excersises(filename = 'excersises.txt')
         if choice == "5":
             data_menager.mark_as_done()
         if choice == "6":
@@ -45,7 +45,7 @@ def main():
         if choice == "8":
             data_menager.save()
         if choice == "9":
-            x = data_menager.import_file(filename='things.txt')
+            x = data_menager.import_file(filename='food.txt')
             value = data_menager.calculate(x)
             data_menager.check(value)
 main()

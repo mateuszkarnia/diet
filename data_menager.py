@@ -2,18 +2,17 @@ import os
 
 
 def add_food(dict_of_food):
-
     name_of_food = input("[1] - Back\nEnter the name of the food: ")
     food_calorie = input("Enter the amount of calories: ")
-    
+
     dict_of_food[name_of_food] = food_calorie
-    fout = "things.txt"
+    fout = "food.txt"
     fo = open(fout, "a")
 
     for k, v in dict_of_food.items():
         fo.write(str(k) + ">>>>>" + str(v) + " " + 'kcl\n')
 
-def import_file(filename='things.txt'):
+def import_file(filename='food.txt'):
     file_to_open = open(filename)
     list_from_file = file_to_open.readlines()
     for i in range(len(list_from_file)):
@@ -34,32 +33,36 @@ def calculate(list_a):
 
     return count
 
-def show_list_of_food(filename = 'things.txt'):
+def show_list_of_food(filename = 'food.txt'):
     print("Your list of food: \n")
-    with open("things.txt", "r") as f:
+    with open("food.txt", "r") as f:
         for line in f:
             print(line, end='')
 
 
 
 
-def show_list_of_excersises(list_of_excersises, list_of_calories_burning):
-    print("Your list of excersises:")
-    for k in range(0, len(list_of_excersises), 1):
-        print(str(k+1) + ".) " + list_of_excersises[k], list_of_calories_burning[k], "kcl")
-
+def show_list_of_excersises(filename = 'excersises.txt'):
+    print("Your list of excersises: \n")
+    with open("excersises.txt", "r") as f:
+        for line in f:
+            print(line, end='')
 
 def add_excersise(dict_of_excersises):
     name_of_excersise = input("[1] - Back\nEnter the name of the excersise: ")
     calories_burning = input("Enter the amount of calories burning: ")
     dict_of_excersises[name_of_excersise] = calories_burning
 
+    fout = "excersises.txt"
+    fo = open(fout, "a")
+
+    for k, v in dict_of_excersises.items():
+        fo.write(str(k) + ">>>>>" + str(v) + " " + 'kcl\n')
 
 
 
 
 def mark_as_done():
-    cls()
     show_list()
     mark_choise = input("Choose number 0f thing which you want to mark/unmark as done: ")
     if things_marked[int(mark_choise) - 1] != "X":
@@ -70,7 +73,6 @@ def mark_as_done():
 
 
 def delete_thing():
-    cls()
     show_list()
     delete_choice = input("[x] - Back\nWhich task do you want to delete?")
     if delete_choice != "x":
