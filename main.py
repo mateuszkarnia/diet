@@ -11,13 +11,9 @@ def main():
     marked = "X"
     unmarked = " "
 
-    list_of_food = []
-    list_of_food_calories = []
-    list_of_excersises = []
-    list_of_calories_burning = []
+    dict_of_food = {}
+    dict_of_excersises = {}
 
-
-def menu():
     while choice != "8":
         print("[1] - Add food and callories what you eat.")
         print("[2] - Add excersise and callories burning.")
@@ -30,13 +26,13 @@ def menu():
         choice = input("Type your choose: ")
         if choice == "1":
             os.system('clear')
-            data_menager.add_food(list_of_food, list_of_food_calories)
+            data_menager.add_food(dict_of_food)
         if choice == "2":
             os.system('clear')
-            data_menager.add_excersise(list_of_excersises, list_of_calories_burning)
+            data_menager.add_excersise(dict_of_excersises)
         if choice == "3":
             os.system('clear')
-            data_menager.show_list_of_food(list_of_food, list_of_food_calories)
+            data_menager.show_list_of_food(filename='things.txt')
         if choice == "4":
             os.system('clear')
             data_menager.show_list_of_excersises(list_of_excersises, list_of_calories_burning)
@@ -48,4 +44,6 @@ def menu():
             data_menager.archive()
         if choice == "8":
             data_menager.save()
+
+
 main()

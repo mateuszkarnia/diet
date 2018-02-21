@@ -10,19 +10,16 @@ things_to_do = []
 things_marked = []
 
 
-def add_food(filename='things.txt'):
-    cls()
-    list_of_food = []
+def add_food(dict_of_food):
 
     name_of_food = input("[1] - Back\nEnter the name of the food: ")
     food_calorie = input("Enter the amount of calories: ")
-    
-    list_of_food.append([name_of_food, food_calorie])
-    file_to_open = open(filename, 'a')
+    dict_of_food[name_of_food] = food_calorie
+    fout = "things.txt"
+    fo = open(fout, "w")
 
-    line = " ".join(list_of_food[0])
-
-    file_to_open.write(line)
+    for k, v in dict_of_food.items():
+        fo.write(str(k) + str(v) + 'kcl\n')
 
 
 def import_file(filename='things.txt'):
@@ -46,10 +43,13 @@ def calculate(list_a):
 
     return count
 
-def show_list_of_food(list_of_food, list_of_food_calories):
+def show_list_of_food(filename = 'things.txt'):
     print("Your list of food:")
-    for k in range(0, len(list_of_food), 1):
-        print(str(k+1) + ".) " + list_of_food[k], list_of_food_calories[k], "kcl")
+    with open("things.txt", "r") as f:
+        for line in f:
+            print(line, end='\n')
+
+
 
 
 def show_list_of_excersises(list_of_excersises, list_of_calories_burning):
@@ -58,14 +58,12 @@ def show_list_of_excersises(list_of_excersises, list_of_calories_burning):
         print(str(k+1) + ".) " + list_of_excersises[k], list_of_calories_burning[k], "kcl")
 
 
-def add_excersise(list_of_excersises, list_of_calories_burning):
+def add_excersise(dict_of_excersises):
     name_of_excersise = input("[1] - Back\nEnter the name of the excersise: ")
     calories_burning = input("Enter the amount of calories burning: ")
+    dict_of_excersises[name_of_excersise] = calories_burning
 
-    if name_of_excersise != "1":
-        list_of_excersises.append(name_of_excersise)
-        list_of_calories_burning.append(calories_burning)
-        return(list_of_excersises, list_of_calories_burning)
+
 
 
 
@@ -128,14 +126,3 @@ def opened():
         lstr = line
         lstr = lstr.replace("\n","")
         things_marked.append(lstr)
-
-
-
-def cls():
-    print("\n" * 5)
-
-file_exist="things.txt"
-if os.path.isfile(file_exist) :
-    file_exist="marking.txt"
-    if os.path.isfile(file_exist) :
-        opened()
