@@ -10,7 +10,7 @@ def add_food(dict_of_food):
     fo = open(fout, "a")
 
     for k, v in dict_of_food.items():
-        fo.write(str(k) + ">>>>>" + str(v) + " " + 'kcl\n')
+        fo.write(str(k) + " " + v + " " + 'kcl\n')
 
 def import_file(filename='food.txt'):
     file_to_open = open(filename)
