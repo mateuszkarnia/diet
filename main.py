@@ -38,7 +38,7 @@ def print_menu(menu, upper):
             print(menu[option].center(columns))
 
 
-def menu():
+def get_input():
     options_to_chose = ['Add food and callories what you eat.', 'Add excersise and callories burning', 'Show list of food.',
                         'Show list of excersises.', 'Mark/unmark as done', 'Delete thing to do', 'Archive', 'Exit', 'Calculate calories\n', "Press 'ENTER' to choose"]
     current = 0
@@ -57,21 +57,41 @@ def menu():
     return current
 
 
-def run_functions(current_choice):
+def pause():
+    columns = shutil.get_terminal_size().columns
+    text = '\nPress any key to display a menu.'
+    print(text.center(columns))
+    next_step = getch()
+
+
+def introduction_screen():
+    os.system('clear')
+    columns = shutil.get_terminal_size().columns
+    asci = """
+                      ___          /|
+         ||||     .-"`   `"-.     } |  __
+    |||| ||||   .'  .-'`'-.  '.   } | /  \\
+    |||| \  /  /  .'       '.  \  } | ;();
+    \  /  ||  /  ;           ;  \  \| \  /
+     ||   ||  | ;             ; |  ||  ||
+     %%   %%  | ;             ; |  %%  %%
+     %%   %%  \  ;           ;  /  %%  %%
+     %%   %%   \  '.       .'  /   %%  %%
+     %%   %%    '.  `-.,.-'  .'    %%  %%
+     %%   %%      '-.,___,.-'      %%  %%"""
+    print (asci.center(columns))
+    pause()
+
+
+def run_function(current_choice):
     choice = current_choice
     choice_1 = ""
     marked = "X"
     unmarked = " "
 
-    # print("\n[1] - Add food and callories what you eat.")
-    # print("[2] - Add excersise and callories burning.")
-    # print("[3] - Show list of food.")
-    # print("[4] - Show list of excersises.")
-    # print("[5] - Mark/unmark as done")
-    # print("[6] - Delete thing to do.")
-    # print("[7] - Archive")
-    # print("[8] - Exit")
-    # print("[9] - calculate calories")
+
+
+
     if choice == 0:
         dict_of_food = {}
         data_menager.add_food(dict_of_food)
@@ -79,19 +99,19 @@ def run_functions(current_choice):
         dict_of_excersises = {}
         data_menager.add_excersise(dict_of_excersises)
     elif choice == 2:
+        dict_of_food = {}
         data_menager.show_list_of_food()
         x = data_menager.import_file(filename='food.txt')
         value = data_menager.calculate(x)
         data_menager.check(value)
-        print('\nPress any key to display a menu')
-        next_step = getch()
+        pause()
     elif choice == 3:
+        dict_of_excersises = {}
         data_menager.show_list_of_excersises()
         x = data_menager.import_file(filename='excersises.txt')
         value = data_menager.calculate(x)
         data_menager.check(value)
-        print('\nPress any key to display a menu')
-        next_step = getch()
+        pause()
     elif choice == 4:
         data_menager.mark_as_done()
     elif choice == 5:
@@ -104,8 +124,9 @@ def run_functions(current_choice):
 
 def main():
     while 1:
-        run_functions(menu())
+        run_function(get_input())
 
 
 if __name__ == '__main__':
+    introduction_screen()
     main()
