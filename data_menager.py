@@ -1,26 +1,17 @@
 import os
 
 
-choice = ""
-choice_1 = ""
-marked = "X"
-unmarked = " "
-
-things_to_do = []
-things_marked = []
-
-
 def add_food(dict_of_food):
 
     name_of_food = input("[1] - Back\nEnter the name of the food: ")
     food_calorie = input("Enter the amount of calories: ")
+    
     dict_of_food[name_of_food] = food_calorie
     fout = "things.txt"
-    fo = open(fout, "w")
+    fo = open(fout, "a")
 
     for k, v in dict_of_food.items():
-        fo.write(str(k) + str(v) + 'kcl\n')
-
+        fo.write(str(k) + ">>>>>" + str(v) + " " + 'kcl\n')
 
 def import_file(filename='things.txt'):
     file_to_open = open(filename)
@@ -44,10 +35,10 @@ def calculate(list_a):
     return count
 
 def show_list_of_food(filename = 'things.txt'):
-    print("Your list of food:")
+    print("Your list of food: \n")
     with open("things.txt", "r") as f:
         for line in f:
-            print(line, end='\n')
+            print(line, end='')
 
 
 
@@ -68,6 +59,7 @@ def add_excersise(dict_of_excersises):
 
 
 def mark_as_done():
+    cls()
     show_list()
     mark_choise = input("Choose number 0f thing which you want to mark/unmark as done: ")
     if things_marked[int(mark_choise) - 1] != "X":
@@ -78,6 +70,7 @@ def mark_as_done():
 
 
 def delete_thing():
+    cls()
     show_list()
     delete_choice = input("[x] - Back\nWhich task do you want to delete?")
     if delete_choice != "x":
@@ -126,3 +119,11 @@ def opened():
         lstr = line
         lstr = lstr.replace("\n","")
         things_marked.append(lstr)
+
+
+def calculate(list_a):
+    count = 0
+    for i in range(len(list_a)):
+        count += int(list_a[i][1])
+
+    return count
