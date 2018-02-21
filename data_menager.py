@@ -12,6 +12,7 @@ def add_food(dict_of_food):
     for k, v in dict_of_food.items():
         fo.write(str(k) + " " + v + " " + 'kcl\n')
 
+
 def import_file(filename='food.txt'):
     file_to_open = open(filename)
     list_from_file = file_to_open.readlines()
@@ -20,11 +21,19 @@ def import_file(filename='food.txt'):
 
     return list_from_file
 
+
 def check(calories):
-    if calories < 2000:
-        print(str(calories) + " good")
+    if calories <1500:
+        print(str(calories) + " That's too low!")
+    elif calories <1800 or calories < 2500:
+        print(str(calories) + " Good")
+    elif calories < 2000:
+        print(str(calories) + " Perfect!")
+    elif calories > 2500:
+        print(str(calories) + " That's too much!")
     else:
-        print("bad")
+        print("That's too much!")
+
 
 def calculate(list_a):
     count = 0
@@ -33,20 +42,20 @@ def calculate(list_a):
 
     return count
 
-def show_list_of_food(filename = 'food.txt'):
+
+def show_list_of_food():
     print("Your list of food: \n")
     with open("food.txt", "r") as f:
         for line in f:
             print(line, end='')
 
 
-
-
-def show_list_of_excersises(filename = 'excersises.txt'):
+def show_list_of_excersises():
     print("Your list of excersises: \n")
     with open("excersises.txt", "r") as f:
         for line in f:
             print(line, end='')
+
 
 def add_excersise(dict_of_excersises):
     name_of_excersise = input("[1] - Back\nEnter the name of the excersise: ")
@@ -57,9 +66,7 @@ def add_excersise(dict_of_excersises):
     fo = open(fout, "a")
 
     for k, v in dict_of_excersises.items():
-        fo.write(str(k) + ">>>>>" + str(v) + " " + 'kcl\n')
-
-
+        fo.write(str(k) + " " + v  + " " + 'kcl\n')
 
 
 def mark_as_done():
@@ -82,6 +89,7 @@ def delete_thing():
         return
     show_list()
 
+
 def archive():
     k = 0
 
@@ -91,7 +99,6 @@ def archive():
             things_marked.pop(k)
             k -= 1
         k += 1
-
 
 
 def save():

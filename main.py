@@ -51,7 +51,7 @@ def menu():
         if pressedkey.lower() == 'w':
             if current > 0:
                 current -= 1
-        elif pressedkey.lower() == 's':    
+        elif pressedkey.lower() == 's':
             if current < 8:
                 current += 1
     return current
@@ -63,9 +63,6 @@ def run_functions(current_choice):
     marked = "X"
     unmarked = " "
 
-    dict_of_food = {}
-    dict_of_excersises = {}
-
     # print("\n[1] - Add food and callories what you eat.")
     # print("[2] - Add excersise and callories burning.")
     # print("[3] - Show list of food.")
@@ -76,15 +73,23 @@ def run_functions(current_choice):
     # print("[8] - Exit")
     # print("[9] - calculate calories")
     if choice == 0:
+        dict_of_food = {}
         data_menager.add_food(dict_of_food)
     elif choice == 1:
+        dict_of_excersises = {}
         data_menager.add_excersise(dict_of_excersises)
     elif choice == 2:
         data_menager.show_list_of_food()
+        x = data_menager.import_file(filename='food.txt')
+        value = data_menager.calculate(x)
+        data_menager.check(value)
         print('\nPress any key to display a menu')
         next_step = getch()
     elif choice == 3:
         data_menager.show_list_of_excersises()
+        x = data_menager.import_file(filename='excersises.txt')
+        value = data_menager.calculate(x)
+        data_menager.check(value)
         print('\nPress any key to display a menu')
         next_step = getch()
     elif choice == 4:
@@ -95,14 +100,12 @@ def run_functions(current_choice):
         data_menager.archive()
     elif choice == 7:
         data_menager.save()
-    elif choice == 8:
-        x = data_menager.import_file(filename='food.txt')
-        value = data_menager.calculate(x)
-        data_menager.check(value)
+
 
 def main():
     while 1:
         run_functions(menu())
+
 
 if __name__ == '__main__':
     main()
