@@ -45,7 +45,7 @@ def get_input():
                         'Show list of excersises.', 'Exit\n', "Press 'ENTER' to choose"]
     current = 0
     pressedkey = ''
-    os.system('clear')  
+    os.system('clear')
     while pressedkey.lower() != 'e':
         os.system('clear')
         print_menu(options_to_chose, current)
@@ -103,7 +103,7 @@ def get_needed_calories():
 
 
 def sex_choice():
-    while 1:
+    while True:
         print('\nAre you male[m] or female[f]?')
         sex = getch()
         if sex == 'm':
@@ -147,7 +147,7 @@ def run_function(current_choice):
         sys.exit()
 
 def main():
-    while 1:
+    while True:
         run_function(get_input())
 
 
