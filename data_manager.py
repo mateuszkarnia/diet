@@ -2,12 +2,12 @@ import os
 
 
 def add_food(dict_of_food):
-        name_of_food = input("[1] - Back\nEnter the name of the food: ")
+        name_of_food = input("Enter the name of the food: ")
         food_calorie = input("Enter the amount of calories: ")
-
+        print("That's not a correct input")
         dict_of_food[name_of_food] = food_calorie
         fout = "food.txt"
-        fo = open(fout, "a")
+        fo = open(fout, "w")
 
         for k, v in dict_of_food.items():
             fo.write(str(k) + " " + v + " " + 'kcl\n')
@@ -22,17 +22,18 @@ def import_file(filename='food.txt'):
     return list_from_file
 
 
-def check(calories):
-    if calories <1500:
+def check(calories, filename = "demand_calories.txt"):
+    with open(filename , "r") as f:
+        for line in f:
+            demand_calories = int(line)
+
+    if calories > demand_calories - 50 and calories < demand_calories + 50:
+        print("\n"+str(calories) + " kcl That's perfect")
+    elif calories <demand_calories:
         print("\n"+str(calories) + " kcl That's too low!")
-    elif calories <1800 or calories < 2500:
-        print("\n"+str(calories) + " kcl Good")
-    elif calories < 2000:
-        print("\n"+str(calories) + " kcl Perfect!")
-    elif calories > 2500:
+    elif calories >demand_calories:
         print("\n"+str(calories) + " kcl That's too much!")
-    else:
-        print("\n"+str(calories) + " kcl That's too much!")
+
 
 
 def calculate(list_a):
@@ -58,7 +59,7 @@ def show_list_of_excersises():
 
 
 def add_excersise(dict_of_excersises):
-    name_of_excersise = input("[1] - Back\nEnter the name of the excersise: ")
+    name_of_excersise = input("Enter the name of the excersise: ")
     calories_burning = input("Enter the amount of calories burning: ")
     dict_of_excersises[name_of_excersise] = calories_burning
 
@@ -67,14 +68,3 @@ def add_excersise(dict_of_excersises):
 
     for k, v in dict_of_excersises.items():
         fo.write(str(k) + " " + v  + " " + 'kcl\n')
-
-
-
-
-
-def calculate(list_a):
-    count = 0
-    for i in range(len(list_a)):
-        count += int(list_a[i][1])
-
-    return count

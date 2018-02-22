@@ -1,6 +1,1 @@
-jaja 22 kcl
-Maslo 55 kcl
-kielbasa 200 kcl
-jablko 1000 kcl
-kanapka 1000 kcl
-kks 213 kcl
+mleko 200 kcl

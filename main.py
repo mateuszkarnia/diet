@@ -45,7 +45,7 @@ def get_input():
                         'Show list of excersises.', 'Exit\n', "Press 'ENTER' to choose"]
     current = 0
     pressedkey = ''
-    os.system('clear')  
+    os.system('clear')
     while pressedkey.lower() != 'e':
         os.system('clear')
         print_menu(options_to_chose, current)
