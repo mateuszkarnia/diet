@@ -35,7 +35,7 @@ def print_menu(menu, upper):
     columns = shutil.get_terminal_size().columns
     for option in range(len(menu)):
         if option == upper:
-            print(color.BOLD + color.RED + menu[option].upper().center(columns) + color.END)
+            print(color.UNDERLINE + color.YELLOW + menu[option].upper().center(columns) + color.END)
         else:
             print(menu[option].center(columns))
 
@@ -107,13 +107,13 @@ def get_needed_calories():
         print('Please answer on the following questions.')
         sex = sex_choice()
         if sex == 'm':
-            return caloric_formula() - 161
+            return int(1.6* caloric_formula() - 161)
         elif sex == 'f':
-            return caloric_formula() + 5
+            return int(1.6*caloric_formula() + 5)
 
 
 def sex_choice():
-    while 1:
+    while True:
         print('\nAre you male[m] or female[f]?')
         sex = getch()
         if sex == 'm':
