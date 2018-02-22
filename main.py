@@ -4,6 +4,7 @@ import math
 import shutil
 import data_menager
 
+
 class color:
    PURPLE = '\033[95m0'
    CYAN = '\033[96m'
@@ -40,10 +41,10 @@ def print_menu(menu, upper):
 
 def get_input():
     options_to_chose = ['Add food and callories what you eat.', 'Add excersise and callories burning', 'Show list of food.',
-                        'Show list of excersises.', 'Mark/unmark as done', 'Delete thing to do', 'Archive', 'Exit', 'Calculate calories\n', "Press 'ENTER' to choose"]
+                        'Show list of excersises.', 'Mark/unmark as done', 'Delete thing to do', 'Archive', 'Exit\n', "Press key 'e' to run current option"]
     current = 0
     pressedkey = ''
-    os.system('clear')
+    os.system('clear')  
     while pressedkey.lower() != 'e':
         os.system('clear')
         print_menu(options_to_chose, current)
@@ -53,7 +54,7 @@ def get_input():
             if current > 0:
                 current -= 1
         elif pressedkey.lower() == 's':
-            if current < 8:
+            if current < 7:
                 current += 1
     return current
 
@@ -65,7 +66,7 @@ def pause():
     next_step = getch()
 
 
-def introduction_screen():
+def print_ascii():
     os.system('clear')
     columns = shutil.get_terminal_size().columns
     
@@ -78,49 +79,80 @@ def introduction_screen():
     pause()
 
 
+def caloric_formula():
+    weight = int(input('How much is your weight?'))
+    height = int(input('How much is your height?'))
+    old = int(input('How old are you?'))
+    return 10*weight + 6.25*height -5*old
+
+
+def get_needed_calories():
+    print('Hello Sir/Madam')
+    print("Now we need to get yours daily caloric demand.\nDo you already know it[1] or would you like to count it[2]?")
+    pressedkey = getch()
+    if pressedkey == '1':
+        return input('Enter your daily caloric demand: ')
+    elif pressedkey == '2':
+        print('Please answer on the following questions.')
+        sex = sex_choice()
+        if sex == 'm':
+            return int(caloric_formula() - 161.0)
+        elif sex == 'f':
+            return int(caloric_formula() + 5.0)
+
+
+def sex_choice():
+    while 1:
+        print('\nAre you male[m] or female[f]?')
+        sex = getch()
+        if sex == 'm':
+            return 'm'
+        elif sex == 'f':
+            return 'f'
+        else:
+            print("Yes, it's foolproof")
+
+
+def introduction_screen():
+    print_ascii()
+    get_needed_calories()
+
+
 def run_function(current_choice):
     choice = current_choice
     choice_1 = ""
     marked = "X"
     unmarked = " "
 
-
-
-
     if choice == 0:
         dict_of_food = {}
-        data_menager.add_food(dict_of_food)
+        data_manager.add_food(dict_of_food)
     elif choice == 1:
         dict_of_excersises = {}
-        data_menager.add_excersise(dict_of_excersises)
+        data_manager.add_excersise(dict_of_excersises)
     elif choice == 2:
         dict_of_food = {}
-        data_menager.show_list_of_food()
-        x = data_menager.import_file(filename='food.txt')
-        value = data_menager.calculate(x)
-        data_menager.check(value)
+        data_manager.show_list_of_food()
+        x = data_manager.import_file(filename='food.txt')
+        value = data_manager.calculate(x)
+        data_manager.check(value)
         pause()
     elif choice == 3:
         dict_of_excersises = {}
-        data_menager.show_list_of_excersises()
-        x = data_menager.import_file(filename='excersises.txt')
-        value = data_menager.calculate(x)
-        data_menager.check(value)
+        data_manager.show_list_of_excersises()
+        x = data_manager.import_file(filename='excersises.txt')
+        value = data_manager.calculate(x)
+        data_manager.check(value)
         pause()
     elif choice == 4:
-        data_menager.mark_as_done()
+        data_manager.mark_as_done()
     elif choice == 5:
-        data_menager.delete_thing()
+        data_manager.delete_thing()
     elif choice == 6:
-        data_menager.archive()
+        data_manager.archive()
     elif choice == 7:
-        data_menager.save()
+        data_manager.save()
 
-    elif choice == 8:
-        x = data_menager.import_file(filename='food.txt')
-        value = data_menager.calculate(x)
-        data_menager.check(value)
-        pause()
 
 def main():
     while 1:
@@ -129,4 +161,3 @@ def main():
 
 if __name__ == '__main__':
     introduction_screen()
-    main()

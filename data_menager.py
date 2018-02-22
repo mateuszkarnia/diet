@@ -70,13 +70,13 @@ def add_excersise(dict_of_excersises):
 
 
 def mark_as_done():
-    show_list()
+    show_list_of_food()
     mark_choise = input("Choose number 0f thing which you want to mark/unmark as done: ")
     if things_marked[int(mark_choise) - 1] != "X":
         things_marked[int(mark_choise) - 1] = marked
     else:
         things_marked[int(mark_choise) - 1] = unmarked
-    show_list()
+    show_list_of_food()
 
 
 def delete_thing():
