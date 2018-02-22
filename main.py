@@ -35,7 +35,7 @@ def print_menu(menu, upper):
     columns = shutil.get_terminal_size().columns
     for option in range(len(menu)):
         if option == upper:
-            print(color.UNDERLINE + color.YELLOW + menu[option].upper().center(columns) + color.END)
+            print(color.BOLD + color.YELLOW + menu[option].upper().center(columns) + color.END)
         else:
             print(menu[option].center(columns))
 
