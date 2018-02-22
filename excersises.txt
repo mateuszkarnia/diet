@@ -1,3 +1,4 @@
 pushups 55 kcl
 walking 150 kcl
 runing 500 kcl
+squad 22 kcl
