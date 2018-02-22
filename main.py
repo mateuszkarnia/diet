@@ -2,7 +2,8 @@ import os
 import time
 import math
 import shutil
-import data_menager
+import data_manager
+import sys
 
 
 class color:
@@ -41,7 +42,7 @@ def print_menu(menu, upper):
 
 def get_input():
     options_to_chose = ['Add food and callories what you eat.', 'Add excersise and callories burning', 'Show list of food.',
-                        'Show list of excersises.', 'Mark/unmark as done', 'Delete thing to do', 'Archive', 'Exit\n', "Press key 'e' to run current option"]
+                        'Show list of excersises.', 'Exit\n', "Press 'ENTER' to choose"]
     current = 0
     pressedkey = ''
     os.system('clear')  
@@ -49,7 +50,7 @@ def get_input():
         os.system('clear')
         print_menu(options_to_chose, current)
         pressedkey = getch()
-        
+
         if pressedkey.lower() == 'w':
             if current > 0:
                 current -= 1
@@ -69,7 +70,7 @@ def pause():
 def print_ascii():
     os.system('clear')
     columns = shutil.get_terminal_size().columns
-    
+
     print(" <}\\".center(columns))
     print("      .--\--.".center(columns))
     print("     /   `   \\".center(columns))
@@ -120,9 +121,6 @@ def introduction_screen():
 
 def run_function(current_choice):
     choice = current_choice
-    choice_1 = ""
-    marked = "X"
-    unmarked = " "
 
     if choice == 0:
         dict_of_food = {}
@@ -144,15 +142,9 @@ def run_function(current_choice):
         value = data_manager.calculate(x)
         data_manager.check(value)
         pause()
-    elif choice == 4:
-        data_manager.mark_as_done()
-    elif choice == 5:
-        data_manager.delete_thing()
-    elif choice == 6:
-        data_manager.archive()
-    elif choice == 7:
-        data_manager.save()
 
+    elif choice == 4:
+        sys.exit()
 
 def main():
     while 1:
