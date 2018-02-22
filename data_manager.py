@@ -7,7 +7,7 @@ def add_food(dict_of_food):
         print("That's not a correct input")
         dict_of_food[name_of_food] = food_calorie
         fout = "food.txt"
-        fo = open(fout, "w")
+        fo = open(fout, "a")
 
         for k, v in dict_of_food.items():
             fo.write(str(k) + " " + v + " " + 'kcl\n')
@@ -22,18 +22,38 @@ def import_file(filename='food.txt'):
     return list_from_file
 
 
-def check(calories, filename = "demand_calories.txt"):
+def show_informations(calories, filename = "demand_calories.txt"):
+    demand_calories = []
+    with open(filename , "r") as f:
+        for line in f:
+            line = line.split(',')
+            demand_calories.append(line)
+    print('________________________')
+    print("\nYou need "+str(demand_calories[0][0])+ " to eat.\n")
+    if demand_calories[0][3] == 'm':
+        print("You need to burn " + str(int(int(demand_calories[0][2])/10)) + " kcl per day to lead a healthy lifestyle.\n")
+    else:
+        print("You need to burn" + str(int(int(demand_calories[0][1])/10)) + " kcl per day to lead a healthy lifestyle.\n")
+    print('________________________')
+    if calories > int(demand_calories[0][0]) - 50 and calories < int(demand_calories[0][0]) + 50:
+        print("\nYou ate "+str(calories) + " kcl That's perfect!")
+    elif calories < int(demand_calories[0][0]):
+        print("\nYou ate "+str(calories) + " kcl That's too low!")
+    elif calories > int(demand_calories[0][0]):
+        print("\nYou ate "+str(calories) + " kcl That's too much!")
+
+
+def check_excersises(calories, filename = "demand_calories.txt"):
     with open(filename , "r") as f:
         for line in f:
             demand_calories = int(line)
-
+        print("\nYou need ",demand_calories," kcl\n")
     if calories > demand_calories - 50 and calories < demand_calories + 50:
         print("\n"+str(calories) + " kcl That's perfect")
     elif calories <demand_calories:
         print("\n"+str(calories) + " kcl That's too low!")
     elif calories >demand_calories:
         print("\n"+str(calories) + " kcl That's too much!")
-
 
 
 def calculate(list_a):
@@ -68,3 +88,6 @@ def add_excersise(dict_of_excersises):
 
     for k, v in dict_of_excersises.items():
         fo.write(str(k) + " " + v  + " " + 'kcl\n')
+
+#def clear_data():
+    #with open()

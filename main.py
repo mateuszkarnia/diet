@@ -94,7 +94,13 @@ def caloric_formula():
     weight = get_int_data('How much is your weight? ')
     height = get_int_data('How much is your height? ')
     old = get_int_data('How old are you? ')
-    return int(10*weight + 6.25*height -5*old)
+    food_calorie_formula = int(1.6 *(10*weight + 6.25*height -5*old))
+    burning_calorie_formula_male = int(655.1 + (9.563 * weight) + (1.85 * height) - (4.676 * old))
+    burning_calorie_formula_woman = int(66.5 + (13.75 * weight) + (5.003 * height) - (6.775 * old))
+    return food_calorie_formula, burning_calorie_formula_male , burning_calorie_formula_woman
+
+
+
 
 
 def get_needed_calories():
@@ -102,14 +108,19 @@ def get_needed_calories():
     print("Now we need to get yours daily caloric demand.\nDo you already know it[1] or would you like to count it[2]?")
     pressedkey = getch()
     if pressedkey == '1':
-        return get_int_data('Enter your daily caloric demand: ')
+        x = get_int_data('Enter your daily caloric demand: ')
+        dates = caloric_formula()
+        sex = input('\nAre you male[m] or female[f]?')
+        return x, dates[1], dates[2], sex
     elif pressedkey == '2':
         print('Please answer on the following questions.')
         sex = sex_choice()
         if sex == 'm':
-            return int(1.6* caloric_formula() - 161)
+            dates = caloric_formula()
+            return dates[0] - 161, dates[1], dates[2], 'm'
         elif sex == 'f':
-            return int(1.6*caloric_formula() + 5)
+            dates = caloric_formula()
+            return dates[0] + 5, dates[1], dates[2], 'f'
 
 
 def sex_choice():
@@ -124,16 +135,29 @@ def sex_choice():
             print("Yes, it's foolproof")
 
 
-def export_to_file(data):
-    with open('demand_calories.txt', 'w') as file:
+def export_to_file(data, mode = 'w'):
+    with open('demand_calories.txt', mode) as file:
+        for element in data:
+            if element == data[-1]:
+                file.write(str(element))
+            else:
+                file.write(str(element) + ',')
+
+
+def export_to_file_int(data, mode = 'w'):
+    with open('demand_calories.txt', mode) as file:
         file.write(str(data))
 
 
 def introduction_screen():
     print_ascii()
-    demand_calories = get_needed_calories()
-    export_to_file(demand_calories)
+    x = get_needed_calories()
 
+    if type(x) is tuple:
+        x = list(x)
+        export_to_file(x)
+    else:
+        export_to_file_int(x)
 
 def run_function(current_choice):
     choice = current_choice
@@ -149,14 +173,11 @@ def run_function(current_choice):
         data_manager.show_list_of_food()
         x = data_manager.import_file(filename='food.txt')
         value = data_manager.calculate(x)
-        data_manager.check(value)
+        data_manager.show_informations(value)
         pause()
     elif choice == 3:
         dict_of_excersises = {}
         data_manager.show_list_of_excersises()
-        x = data_manager.import_file(filename='excersises.txt')
-        value = data_manager.calculate(x)
-        data_manager.check(value)
         pause()
 
     elif choice == 4:
