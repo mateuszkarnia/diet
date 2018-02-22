@@ -44,10 +44,11 @@ def get_input():
     current = 0
     pressedkey = ''
     os.system('clear')
-    while pressedkey != 'e':
+    while pressedkey.lower() != 'e':
         os.system('clear')
         print_menu(options_to_chose, current)
         pressedkey = getch()
+        
         if pressedkey.lower() == 'w':
             if current > 0:
                 current -= 1
@@ -59,27 +60,21 @@ def get_input():
 
 def pause():
     columns = shutil.get_terminal_size().columns
-    text = '\nPress any key to display a menu.'
-    print(text.center(columns))
+    print('\n')
+    print('Press any key to display a menu.'.center(columns))
     next_step = getch()
 
 
 def introduction_screen():
     os.system('clear')
     columns = shutil.get_terminal_size().columns
-    asci = """
-                      ___          /|
-         ||||     .-"`   `"-.     } |  __
-    |||| ||||   .'  .-'`'-.  '.   } | /  \\
-    |||| \  /  /  .'       '.  \  } | ;();
-    \  /  ||  /  ;           ;  \  \| \  /
-     ||   ||  | ;             ; |  ||  ||
-     %%   %%  | ;             ; |  %%  %%
-     %%   %%  \  ;           ;  /  %%  %%
-     %%   %%   \  '.       .'  /   %%  %%
-     %%   %%    '.  `-.,.-'  .'    %%  %%
-     %%   %%      '-.,___,.-'      %%  %%"""
-    print (asci.center(columns))
+    
+    print(" <}\\".center(columns))
+    print("      .--\--.".center(columns))
+    print("     /   `   \\".center(columns))
+    print("     |       |".center(columns))
+    print("      \     /".center(columns))
+    print("      '-'-'".center(columns))
     pause()
 
 
@@ -121,6 +116,11 @@ def run_function(current_choice):
     elif choice == 7:
         data_menager.save()
 
+    elif choice == 8:
+        x = data_menager.import_file(filename='food.txt')
+        value = data_menager.calculate(x)
+        data_menager.check(value)
+        pause()
 
 def main():
     while 1:
