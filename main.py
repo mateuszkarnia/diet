@@ -44,19 +44,15 @@ def get_input():
     current = 0
     pressedkey = ''
     os.system('clear')
-    while pressedkey != 'e':
+    while pressedkey.lower() != 'e':
         os.system('clear')
         print_menu(options_to_chose, current)
-
         pressedkey = getch()
-        if pressedkey == 'w':
+        
+        if pressedkey.lower() == 'w':
             if current > 0:
                 current -= 1
-<<<<<<< HEAD
-        elif pressedkey == 's':    
-=======
         elif pressedkey.lower() == 's':
->>>>>>> 301eae0548bc9312fa7d86437e684f41da903ffb
             if current < 8:
                 current += 1
     return current
@@ -120,14 +116,11 @@ def run_function(current_choice):
     elif choice == 7:
         data_menager.save()
 
-<<<<<<< HEAD
     elif choice == 8:
         x = data_menager.import_file(filename='food.txt')
         value = data_menager.calculate(x)
         data_menager.check(value)
         pause()
-=======
->>>>>>> 301eae0548bc9312fa7d86437e684f41da903ffb
 
 def main():
     while 1:
