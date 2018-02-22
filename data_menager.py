@@ -24,15 +24,15 @@ def import_file(filename='food.txt'):
 
 def check(calories):
     if calories <1500:
-        print(str(calories) + " That's too low!")
+        print("\n"+str(calories) + " kcl That's too low!")
     elif calories <1800 or calories < 2500:
-        print(str(calories) + " Good")
+        print("\n"+str(calories) + " kcl Good")
     elif calories < 2000:
-        print(str(calories) + " Perfect!")
+        print("\n"+str(calories) + " kcl Perfect!")
     elif calories > 2500:
-        print(str(calories) + " That's too much!")
+        print("\n"+str(calories) + " kcl That's too much!")
     else:
-        print("That's too much!")
+        print("\n"+str(calories) + " kcl That's too much!")
 
 
 def calculate(list_a):
