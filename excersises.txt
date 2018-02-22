@@ -1,1 +1,2 @@
 pushups 55 kcl
+walking 150 kcl

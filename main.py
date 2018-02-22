@@ -2,7 +2,8 @@ import os
 import time
 import math
 import shutil
-import data_menager
+import data_manager
+import sys
 
 class color:
    PURPLE = '\033[95m0'
@@ -40,7 +41,7 @@ def print_menu(menu, upper):
 
 def get_input():
     options_to_chose = ['Add food and callories what you eat.', 'Add excersise and callories burning', 'Show list of food.',
-                        'Show list of excersises.', 'Mark/unmark as done', 'Delete thing to do', 'Archive', 'Exit', 'Calculate calories\n', "Press 'ENTER' to choose"]
+                        'Show list of excersises.', 'Exit\n', "Press 'ENTER' to choose"]
     current = 0
     pressedkey = ''
     os.system('clear')
@@ -48,7 +49,7 @@ def get_input():
         os.system('clear')
         print_menu(options_to_chose, current)
         pressedkey = getch()
-        
+
         if pressedkey.lower() == 'w':
             if current > 0:
                 current -= 1
@@ -68,7 +69,7 @@ def pause():
 def introduction_screen():
     os.system('clear')
     columns = shutil.get_terminal_size().columns
-    
+
     print(" <}\\".center(columns))
     print("      .--\--.".center(columns))
     print("     /   `   \\".center(columns))
@@ -80,47 +81,31 @@ def introduction_screen():
 
 def run_function(current_choice):
     choice = current_choice
-    choice_1 = ""
-    marked = "X"
-    unmarked = " "
-
-
 
 
     if choice == 0:
         dict_of_food = {}
-        data_menager.add_food(dict_of_food)
+        data_manager.add_food(dict_of_food)
     elif choice == 1:
         dict_of_excersises = {}
-        data_menager.add_excersise(dict_of_excersises)
+        data_manager.add_excersise(dict_of_excersises)
     elif choice == 2:
         dict_of_food = {}
-        data_menager.show_list_of_food()
-        x = data_menager.import_file(filename='food.txt')
-        value = data_menager.calculate(x)
-        data_menager.check(value)
+        data_manager.show_list_of_food()
+        x = data_manager.import_file(filename='food.txt')
+        value = data_manager.calculate(x)
+        data_manager.check(value)
         pause()
     elif choice == 3:
         dict_of_excersises = {}
-        data_menager.show_list_of_excersises()
-        x = data_menager.import_file(filename='excersises.txt')
-        value = data_menager.calculate(x)
-        data_menager.check(value)
+        data_manager.show_list_of_excersises()
+        x = data_manager.import_file(filename='excersises.txt')
+        value = data_manager.calculate(x)
+        data_manager.check(value)
         pause()
-    elif choice == 4:
-        data_menager.mark_as_done()
-    elif choice == 5:
-        data_menager.delete_thing()
-    elif choice == 6:
-        data_menager.archive()
-    elif choice == 7:
-        data_menager.save()
 
-    elif choice == 8:
-        x = data_menager.import_file(filename='food.txt')
-        value = data_menager.calculate(x)
-        data_menager.check(value)
-        pause()
+    elif choice == 4:
+        sys.exit()
 
 def main():
     while 1:
