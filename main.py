@@ -52,7 +52,11 @@ def get_input():
         if pressedkey == 'w':
             if current > 0:
                 current -= 1
+<<<<<<< HEAD
         elif pressedkey == 's':    
+=======
+        elif pressedkey.lower() == 's':
+>>>>>>> 301eae0548bc9312fa7d86437e684f41da903ffb
             if current < 8:
                 current += 1
     return current
@@ -84,18 +88,28 @@ def run_function(current_choice):
     marked = "X"
     unmarked = " "
 
-    dict_of_food = {}
-    dict_of_excersises = {}
+
+
 
     if choice == 0:
+        dict_of_food = {}
         data_menager.add_food(dict_of_food)
     elif choice == 1:
+        dict_of_excersises = {}
         data_menager.add_excersise(dict_of_excersises)
     elif choice == 2:
+        dict_of_food = {}
         data_menager.show_list_of_food()
+        x = data_menager.import_file(filename='food.txt')
+        value = data_menager.calculate(x)
+        data_menager.check(value)
         pause()
     elif choice == 3:
+        dict_of_excersises = {}
         data_menager.show_list_of_excersises()
+        x = data_menager.import_file(filename='excersises.txt')
+        value = data_menager.calculate(x)
+        data_menager.check(value)
         pause()
     elif choice == 4:
         data_menager.mark_as_done()
@@ -106,15 +120,19 @@ def run_function(current_choice):
     elif choice == 7:
         data_menager.save()
 
+<<<<<<< HEAD
     elif choice == 8:
         x = data_menager.import_file(filename='food.txt')
         value = data_menager.calculate(x)
         data_menager.check(value)
         pause()
+=======
+>>>>>>> 301eae0548bc9312fa7d86437e684f41da903ffb
 
 def main():
     while 1:
         run_function(get_input())
+
 
 if __name__ == '__main__':
     introduction_screen()
