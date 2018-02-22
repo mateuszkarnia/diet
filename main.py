@@ -55,7 +55,7 @@ def get_input():
             if current > 0:
                 current -= 1
         elif pressedkey.lower() == 's':
-            if current < 7:
+            if current < 4:
                 current += 1
     return current
 
@@ -80,11 +80,21 @@ def print_ascii():
     pause()
 
 
+def get_int_data(text):
+    while True:
+        data_to_check = input(text)
+        try:
+            data_to_check = int(data_to_check)
+            return data_to_check
+        except ValueError:
+            print("That's now even a digit")
+
+
 def caloric_formula():
-    weight = int(input('How much is your weight?'))
-    height = int(input('How much is your height?'))
-    old = int(input('How old are you?'))
-    return 10*weight + 6.25*height -5*old
+    weight = get_int_data('How much is your weight? ')
+    height = get_int_data('How much is your height? ')
+    old = get_int_data('How old are you? ')
+    return int(10*weight + 6.25*height -5*old)
 
 
 def get_needed_calories():
@@ -92,14 +102,14 @@ def get_needed_calories():
     print("Now we need to get yours daily caloric demand.\nDo you already know it[1] or would you like to count it[2]?")
     pressedkey = getch()
     if pressedkey == '1':
-        return input('Enter your daily caloric demand: ')
+        return get_int_data('Enter your daily caloric demand: ')
     elif pressedkey == '2':
         print('Please answer on the following questions.')
         sex = sex_choice()
         if sex == 'm':
-            return int(caloric_formula() - 161.0)
+            return caloric_formula() - 161
         elif sex == 'f':
-            return int(caloric_formula() + 5.0)
+            return caloric_formula() + 5
 
 
 def sex_choice():
@@ -114,9 +124,15 @@ def sex_choice():
             print("Yes, it's foolproof")
 
 
+def export_to_file(data):
+    with open('demand_calories.txt', 'w') as file:
+        file.write(str(data))
+
+
 def introduction_screen():
     print_ascii()
-    get_needed_calories()
+    demand_calories = get_needed_calories()
+    export_to_file(demand_calories)
 
 
 def run_function(current_choice):
@@ -146,10 +162,12 @@ def run_function(current_choice):
     elif choice == 4:
         sys.exit()
 
+
 def main():
-    while 1:
+    while True:
         run_function(get_input())
 
 
 if __name__ == '__main__':
     introduction_screen()
+    main()
